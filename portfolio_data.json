@@ -1,0 +1,166 @@
+{
+  "contact": {
+    "email": "hafidiyassine83@gmail.com",
+    "github": "yasine2006",
+    "githubUrl": "https://github.com/yasine2006",
+    "instagramUrl": "https://www.instagram.com/yassine__hafidi_2_/",
+    "linkedinUrl": "https://www.linkedin.com/in/hafidi-yassine-5623a7352/",
+    "loc": "Khenifra, Maroc",
+    "phone": "+212 613 612 618"
+  },
+  "personal": {
+    "about": "Étudiant en 2ème année IDIA à l'ESTK Khenifra, spécialisé en développement web et modèles d'intelligence artificielle (Machine Learning & Deep Learning). Passionné par la création de sites web modernes et de solutions IA concrètes, j'ai acquis une première expérience professionnelle lors d'un stage à la Délégation de Santé de Khenifra.",
+    "aboutCards": [
+      {
+        "desc": "Machine learning, deep learning et NLP. Je développe des modèles intelligents qui apprennent et prédisent à partir de données complexes.",
+        "icon": "🧠",
+        "title": "Intelligence Artificielle"
+      },
+      {
+        "desc": "Collecte, traitement et analyse de données massives. Pipelines de données robustes avec Python, SQL et outils Big Data.",
+        "icon": "📊",
+        "title": "Ingénierie des Données"
+      },
+      {
+        "desc": "Applications web modernes avec HTML/CSS/JS en frontend et Python/Flask en backend. Du prototype au produit fini.",
+        "icon": "💻",
+        "title": "Développement Full Stack"
+      },
+      {
+        "desc": "Étudiant en Ingénierie des Données et Intelligence Artificielle à l'ESTK Khenifra. Formation d'élite en IA et data engineering.",
+        "icon": "🎓",
+        "title": "2ème Année IDIA"
+      }
+    ],
+    "avail": "DISPONIBLE POUR OPPORTUNITÉS",
+    "field": "Ingénierie des Données et Intelligence Artificielle",
+    "name": "Yassine Hafidi",
+    "school": "ESTK Khenifra",
+    "subtitle": "Je crée des solutions intelligentes qui fusionnent données, code et IA."
+  },
+  "projects": [
+    {
+      "desc": "Application de gestion de cabinet dentaire avec prise de rendez-vous, gestion des patients, historique des soins et tableau de bord médical. Interface intuitive pour praticiens.",
+      "emoji": "🦷",
+      "id": 1,
+      "link": "https://github.com/aimrane2424/dentist.git",
+      "tags": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "HTML/CSS"
+      ],
+      "title": "Système Dentiste"
+    },
+    {
+      "desc": "Plateforme de tourisme au Maroc avec découverte de destinations, itinéraires personnalisés, réservations et guide culturel interactif. Valorisation du patrimoine marocain.",
+      "emoji": "🇲🇦",
+      "id": 2,
+      "link": "#",
+      "tags": [
+        "Web",
+        "JavaScript",
+        "API"
+      ],
+      "title": "Maroc Tour"
+    },
+    {
+      "desc": "Chatbot conversationnel utilisant TF-IDF et cosine similarity pour des réponses contextuelles précises. Backend Flask avec NLP et machine learning.",
+      "emoji": "🤖",
+      "id": 4,
+      "link": "https://github.com/yasine2006/projet-teem-chatbot.git",
+      "tags": [
+        "Python",
+        "Flask",
+        "NLP",
+        "ML"
+      ],
+      "title": "Chatbot Intelligent IA"
+    },
+    {
+      "desc": "Application web complète pour agence automobile avec gestion de véhicules, géolocalisation et chatbot intégré. Backend Python + SQLite.",
+      "emoji": "🚗",
+      "id": 5,
+      "link": "https://github.com/yasine2006/location-de-automobile-.git",
+      "tags": [
+        "Python",
+        "SQLite",
+        "Web",
+        "Chatbot"
+      ],
+      "title": "Agence Automobile"
+    },
+    {
+      "desc": "Site web moderne avec animations avancées, design futuriste, chatbot IA intégré et panneau d'administration dynamique.",
+      "emoji": "🌐",
+      "id": 6,
+      "link": "#",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Flask"
+      ],
+      "title": "Portfolio Interactif"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Machine Learning",
+      "level": 60
+    },
+    {
+      "name": "Deep Learning",
+      "level": 80
+    },
+    {
+      "name": "Python",
+      "level": 80
+    },
+    {
+      "name": "HTML & CSS",
+      "level": 90
+    },
+    {
+      "name": "JavaScript",
+      "level": 59
+    },
+    {
+      "name": "NLP",
+      "level": 90
+    },
+    {
+      "name": "SQL / NoSQL",
+      "level": 89
+    },
+    {
+      "name": "Flask",
+      "level": 79
+    },
+    {
+      "name": "Data Science",
+      "level": 89
+    },
+    {
+      "name": "C / C++",
+      "level": 72
+    },
+    {
+      "name": "Git & GitHub",
+      "level": 85
+    },
+    {
+      "name": "Data Mining",
+      "level": 86
+    },
+    {
+      "name": "Power Bi",
+      "level": 70
+    },
+    {
+      "name": "lunix",
+      "level": 70
+    }
+  ],
+  "nova_clients": []
+}

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV — Yassine Hafidi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark:    #0f0a1e;
+      --purple:  #6d28d9;
+      --purple2: #7c3aed;
+      --accent:  #a78bfa;
+      --cyan:    #06b6d4;
+      --light:   #f8fafc;
+      --muted:   #64748b;
+      --border:  #e2e8f0;
+      --sidebar-bg: #1a0f2e;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e8eaf0;
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+
+    /* ── PRINT BUTTON ── */
+    .print-bar {
+      max-width: 900px; margin: 0 auto 20px;
+      display: flex; justify-content: flex-end; gap: 12px;
+    }
+    .print-btn {
+      padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      color: #fff; font-family: 'Inter', sans-serif; font-size: .88rem;
+      font-weight: 700; display: flex; align-items: center; gap: 8px;
+      transition: all .25s;
+    }
+    .print-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(109,40,217,.4); }
+    .back-btn {
+      padding: 10px 22px; border-radius: 10px; cursor: pointer;
+      background: white; border: 2px solid var(--border);
+      color: var(--muted); font-family: 'Inter', sans-serif; font-size: .88rem;
+      font-weight: 600; display: flex; align-items: center; gap: 8px;
+      text-decoration: none; transition: all .25s;
+    }
+    .back-btn:hover { border-color: var(--purple); color: var(--purple); }
+
+    /* ── CV WRAPPER ── */
+    .cv {
+      max-width: 900px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    /* ══ SIDEBAR ══ */
+    .sidebar {
+      background: var(--sidebar-bg);
+      color: #e2d9f3;
+      padding: 40px 28px;
+      display: flex; flex-direction: column; gap: 32px;
+    }
+
+    /* Avatar */
+    .avatar-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple2), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; font-weight: 900; color: white;
+      font-family: 'Space Mono', monospace;
+      box-shadow: 0 0 0 4px rgba(167,139,250,.3), 0 8px 24px rgba(109,40,217,.4);
+    }
+    .sidebar-name {
+      font-size: 1.15rem; font-weight: 800; color: white;
+      text-align: center; letter-spacing: -.01em;
+      line-height: 1.3;
+    }
+    .sidebar-title {
+      font-size: .72rem; color: var(--accent); text-align: center;
+      text-transform: uppercase; letter-spacing: .1em; font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Sidebar section */
+    .sb-section { display: flex; flex-direction: column; gap: 10px; }
+    .sb-section-title {
+      font-size: .65rem; text-transform: uppercase; letter-spacing: .14em;
+      color: var(--accent); font-weight: 700; padding-bottom: 8px;
+      border-bottom: 1px solid rgba(167,139,250,.2);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sb-section-title::before {
+      content: ''; width: 3px; height: 14px;
+      background: linear-gradient(180deg, var(--purple2), var(--cyan));
+      border-radius: 2px;
+    }
+
+    /* Contact items */
+    .contact-list { display: flex; flex-direction: column; gap: 9px; }
+    .contact-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .8rem; color: rgba(226,217,243,.8);
+      line-height: 1.4;
+    }
+    .contact-row .ico { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .contact-row a { color: inherit; text-decoration: none; }
+    .contact-row a:hover { color: var(--accent); }
+
+    /* Skill bars */
+    .skill-list { display: flex; flex-direction: column; gap: 10px; }
+    .skill-item { display: flex; flex-direction: column; gap: 5px; }
+    .skill-label {
+      display: flex; justify-content: space-between;
+      font-size: .78rem; color: rgba(226,217,243,.85); font-weight: 500;
+    }
+    .skill-pct { display: none; }
+    .skill-bar-bg {
+      height: 5px; background: rgba(255,255,255,.1); border-radius: 3px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple2), var(--cyan));
+      border-radius: 3px;
+    }
+
+    /* Languages */
+    .lang-list { display: flex; flex-direction: column; gap: 8px; }
+    .lang-row { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; }
+    .lang-name { color: rgba(226,217,243,.85); font-weight: 500; }
+    .lang-dots { display: flex; gap: 4px; }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,.15);
+    }
+    .dot.filled { background: linear-gradient(135deg, var(--purple2), var(--cyan)); }
+
+    /* Interests */
+    .interest-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
+    .interest-tag {
+      padding: 4px 12px; border-radius: 100px; font-size: .72rem; font-weight: 600;
+      background: rgba(109,40,217,.25); border: 1px solid rgba(167,139,250,.25);
+      color: var(--accent);
+    }
+
+    /* ══ MAIN ══ */
+    .main {
+      background: white;
+      padding: 44px 38px;
+      display: flex; flex-direction: column; gap: 30px;
+    }
+
+    /* Header */
+    .main-header { border-bottom: 2px solid var(--border); padding-bottom: 22px; }
+    .main-name {
+      font-size: 2rem; font-weight: 800; color: var(--dark);
+      letter-spacing: -.03em; line-height: 1;
+    }
+    .main-name span { color: var(--purple2); }
+    .main-title {
+      font-size: .92rem; color: var(--muted); margin-top: 6px; font-weight: 500;
+    }
+    .main-title strong { color: var(--purple2); font-weight: 700; }
+    .available-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      margin-top: 12px; padding: 5px 14px; border-radius: 100px;
+      background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.25);
+      color: #059669; font-size: .75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .available-badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: #10b981;
+    }
+
+    /* Sections */
+    .section { display: flex; flex-direction: column; gap: 14px; }
+    .section-head {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .7rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--purple2);
+    }
+    .section-head::before {
+      content: ''; width: 3px; height: 16px;
+      background: linear-gradient(180deg, var(--purple2), var(--cyan));
+      border-radius: 2px;
+    }
+    .section-head::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* Profile */
+    .profile-text {
+      font-size: .88rem; line-height: 1.8; color: #475569;
+    }
+
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 18px; }
+    .tl-item { display: flex; gap: 16px; }
+    .tl-left {
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 3px;
+    }
+    .tl-dot {
+      width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--purple2), var(--cyan));
+      box-shadow: 0 0 0 3px rgba(109,40,217,.15);
+    }
+    .tl-line { width: 2px; flex: 1; background: var(--border); margin-top: 4px; }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-content { padding-bottom: 4px; flex: 1; }
+    .tl-date {
+      display: inline-block; padding: 2px 10px; border-radius: 100px;
+      background: rgba(109,40,217,.08); color: var(--purple2);
+      font-size: .7rem; font-weight: 700; font-family: 'Space Mono', monospace;
+      margin-bottom: 5px;
+    }
+    .tl-title { font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+    .tl-sub { font-size: .82rem; color: var(--purple2); font-weight: 600; margin-bottom: 4px; }
+    .tl-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+    /* Projects */
+    .projects-list { display: flex; flex-direction: column; gap: 12px; }
+    .proj-item {
+      padding: 14px 18px; border-radius: 10px;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--purple2);
+      background: #fafbff;
+      transition: box-shadow .2s;
+    }
+    .proj-item:hover { box-shadow: 0 4px 16px rgba(109,40,217,.1); }
+    .proj-name {
+      font-size: .9rem; font-weight: 700; color: var(--dark); margin-bottom: 4px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .proj-name .emoji { font-size: 1rem; }
+    .proj-desc { font-size: .8rem; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .proj-tag {
+      padding: 2px 9px; border-radius: 5px; font-size: .68rem; font-weight: 700;
+      background: rgba(109,40,217,.08); color: var(--purple2);
+      border: 1px solid rgba(109,40,217,.15);
+    }
+
+    /* Skills two-col */
+    .skills-2col {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    }
+    .skill-chip {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 8px;
+      background: #f8f5ff; border: 1px solid rgba(109,40,217,.1);
+      font-size: .8rem; font-weight: 600; color: var(--dark);
+    }
+    .skill-chip::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple2), var(--cyan)); flex-shrink: 0;
+    }
+
+    /* Footer */
+    .cv-footer-main {
+      padding-top: 20px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cv-footer-main p { font-size: .75rem; color: var(--muted); }
+    .cv-footer-main span { font-size: .75rem; color: var(--purple2); font-weight: 700; font-family: 'Space Mono', monospace; }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: white; padding: 0; }
+      .print-bar { display: none; }
+      .cv { box-shadow: none; border-radius: 0; max-width: 100%; }
+      .main { padding: 30px 28px; }
+      .sidebar { padding: 30px 22px; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .cv { grid-template-columns: 1fr; }
+      .sidebar { padding: 28px 20px; }
+      .main { padding: 28px 20px; }
+      .skills-2col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Print Bar -->
+<div class="print-bar">
+  <a href="/" class="back-btn">← Retour au Portfolio</a>
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimer / Télécharger PDF</button>
+</div>
+
+<!-- CV -->
+<div class="cv">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+
+    <div class="avatar-wrap">
+      <div class="avatar">YH</div>
+      <div>
+        <div class="sidebar-name">Yassine Hafidi</div>
+        <div class="sidebar-title">Étudiant IDIA · 2ème Année</div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="sb-section">
+      <div class="sb-section-title">Contact</div>
+      <div class="contact-list">
+        <div class="contact-row">
+          <span class="ico">📧</span>
+          <a href="mailto:hafidiyassine83@gmail.com">hafidiyassine83@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="ico">📱</span>
+          <span>+212 613 612 618</span>
+        </div>
+        <div class="contact-row">
+          <span class="ico">📍</span>
+          <span>Khenifra, Maroc</span>
+        </div>
+        <div class="contact-row">
+          <span class="ico">💻</span>
+          <a href="https://github.com/yasine2006" target="_blank">github.com/yasine2006</a>
+        </div>
+        <div class="contact-row">
+          <span class="ico">🔗</span>
+          <a href="https://www.linkedin.com/in/hafidi-yassine-5623a7352/" target="_blank">linkedin.com/in/hafidi-yassine</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compétences -->
+    <div class="sb-section">
+      <div class="sb-section-title">Compétences clés</div>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-label"><span>Python</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Machine Learning</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>HTML & CSS</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Deep Learning</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>SQL / NoSQL</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Flask</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>NLP</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>JavaScript</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Langues -->
+    <div class="sb-section">
+      <div class="sb-section-title">Langues</div>
+      <div class="lang-list">
+        <div class="lang-row">
+          <span class="lang-name">Arabe</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Français</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Anglais</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Intérêts -->
+    <div class="sb-section">
+      <div class="sb-section-title">Intérêts</div>
+      <div class="interest-wrap">
+        <span class="interest-tag">Intelligence Artificielle</span>
+        <span class="interest-tag">Data Science</span>
+        <span class="interest-tag">Développement Web</span>
+        <span class="interest-tag">Open Source</span>
+        <span class="interest-tag">Football</span>
+        <span class="interest-tag">Lecture Tech</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- Header -->
+    <div class="main-header">
+      <h1 class="main-name">Yassine <span>Hafidi</span></h1>
+      <p class="main-title">
+        Étudiant 2ème année · <strong>Ingénierie des Données & Intelligence Artificielle</strong><br>
+        École Supérieure de Technologie de Khenifra (ESTK)
+      </p>
+      <div class="available-badge">Disponible pour opportunités & stages</div>
+    </div>
+
+    <!-- Profil -->
+    <div class="section">
+      <div class="section-head">Profil</div>
+      <p class="profile-text">
+        Étudiant en 2ème année IDIA à l'ESTK Khenifra, spécialisé en <strong>développement web</strong> et <strong>modèles d'intelligence artificielle</strong> (Machine Learning & Deep Learning). Passionné par la création de sites web modernes et de solutions IA concrètes, j'ai acquis une première expérience professionnelle lors d'un stage à la Délégation de Santé de Khenifra. Je cherche à mettre mes compétences au service de projets ambitieux qui fusionnent web et IA.
+      </p>
+    </div>
+
+    <!-- Expérience -->
+    <div class="section">
+      <div class="section-head">Expérience Professionnelle</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <span class="tl-date">2025 — 1 mois</span>
+            <div class="tl-title">Stagiaire Développement Web</div>
+            <div class="tl-sub">Délégation de Santé — Khenifra, Maroc</div>
+            <div class="tl-desc">Stage pratique au sein de la Délégation de Santé de Khenifra. Développement d'outils web internes, découverte du milieu professionnel et application des compétences en développement web acquises à l'ESTK.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formation -->
+    <div class="section">
+      <div class="section-head">Formation</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <span class="tl-date">2025 – Présent</span>
+            <div class="tl-title">Ingénierie des Données et Intelligence Artificielle (IDIA) — 2ème Année</div>
+            <div class="tl-sub">École Supérieure de Technologie — ESTK Khenifra</div>
+            <div class="tl-desc">Formation en développement web, machine learning, deep learning, NLP, data science et bases de données. Réalisation de projets concrets en IA et développement full stack.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <span class="tl-date">2024</span>
+            <div class="tl-title">Baccalauréat — Sciences Physiques</div>
+            <div class="tl-sub">Khenifra, Maroc</div>
+            <div class="tl-desc">Obtenu en 2024 avec de solides bases en mathématiques, physique et logique analytique.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projets -->
+    <div class="section">
+      <div class="section-head">Projets Réalisés</div>
+      <div class="projects-list">
+
+        <div class="proj-item">
+          <div class="proj-name"><span class="emoji">🦷</span> Système de Gestion — Cabinet Dentaire</div>
+          <div class="proj-desc">Application web complète pour la gestion de cabinet dentaire : prise de rendez-vous, suivi des patients, historique des soins et tableau de bord médical interactif.</div>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">Flask</span>
+            <span class="proj-tag">SQLite</span><span class="proj-tag">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name"><span class="emoji">🏢</span> Agence Commerciale — Gestion IA</div>
+          <div class="proj-desc">Système de gestion d'agence commerciale avec IA intégrée : analyse des ventes, prédiction des tendances, CRM et génération automatique de rapports.</div>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">ML</span>
+            <span class="proj-tag">Flask</span><span class="proj-tag">SQLite</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name"><span class="emoji">🇲🇦</span> Maroc Tour — Plateforme Tourisme</div>
+          <div class="proj-desc">Application web de tourisme au Maroc avec découverte de destinations, itinéraires personnalisés et guide culturel interactif.</div>
+          <div class="proj-tags">
+            <span class="proj-tag">JavaScript</span><span class="proj-tag">HTML/CSS</span>
+            <span class="proj-tag">API</span><span class="proj-tag">UX/UI</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name"><span class="emoji">🤖</span> Chatbot Intelligent IA</div>
+          <div class="proj-desc">Chatbot conversationnel utilisant TF-IDF et cosine similarity. Backend Flask avec traitement NLP et machine learning pour des réponses contextuelles précises.</div>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">NLP</span>
+            <span class="proj-tag">Flask</span><span class="proj-tag">ML</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-name"><span class="emoji">🚗</span> Agence Automobile</div>
+          <div class="proj-desc">Application web pour agence automobile avec gestion de véhicules, géolocalisation et chatbot intégré. Backend Python + SQLite.</div>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">SQLite</span>
+            <span class="proj-tag">Flask</span><span class="proj-tag">Chatbot</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Compétences techniques -->
+    <div class="section">
+      <div class="section-head">Technologies</div>
+      <div class="skills-2col">
+        <div class="skill-chip">Python</div>
+        <div class="skill-chip">Machine Learning</div>
+        <div class="skill-chip">Deep Learning</div>
+        <div class="skill-chip">NLP</div>
+        <div class="skill-chip">Flask</div>
+        <div class="skill-chip">HTML & CSS</div>
+        <div class="skill-chip">JavaScript</div>
+        <div class="skill-chip">SQL / MySQL</div>
+        <div class="skill-chip">MongoDB</div>
+        <div class="skill-chip">Git & GitHub</div>
+        <div class="skill-chip">Data Mining</div>
+        <div class="skill-chip">C / C++</div>
+        <div class="skill-chip">Linux / Unix</div>
+        <div class="skill-chip">Data Science</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="cv-footer-main">
+      <p>Dernière mise à jour — Mars 2026</p>
+      <span>&lt;YH/&gt; · ESTK Khenifra</span>
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+async function loadCVData() {
+  try {
+    const res = await fetch('/portfolio-data');
+    const json = await res.json();
+    if (!json.success || !json.data) return;
+    const d = json.data;
+    const p = d.personal || {};
+    const c = d.contact || {};
+
+    // Name
+    document.querySelectorAll('.main-name').forEach(el => {
+      if (p.name) {
+        const parts = p.name.trim().split(' ');
+        const first = parts.slice(0, -1).join(' ') || parts[0];
+        const last = parts.length > 1 ? parts[parts.length - 1] : '';
+        el.innerHTML = `${esc(first)} <span>${esc(last)}</span>`;
+      }
+    });
+
+    // Sidebar name/title
+    const sbName = document.querySelector('.sidebar-name');
+    if (sbName && p.name) sbName.textContent = p.name;
+    const sbTitle = document.querySelector('.sidebar-title');
+    if (sbTitle && p.field) sbTitle.textContent = p.field + ' · 2ème Année';
+
+    // Main title
+    const mainTitle = document.querySelector('.main-title');
+    if (mainTitle && p.field && p.school) {
+      mainTitle.innerHTML = `Étudiant 2ème année · <strong>${esc(p.field)}</strong><br>${esc(p.school)}`;
+    }
+
+    // Profile text
+    const profileEl = document.querySelector('.profile-text');
+    if (profileEl && p.about) profileEl.textContent = p.about;
+
+    // Contact
+    const contactRows = document.querySelectorAll('.contact-row');
+    const contactMap = [
+      { el: contactRows[0], val: c.email, href: `mailto:${c.email}` },
+      { el: contactRows[1], val: c.phone, href: null },
+      { el: contactRows[2], val: c.loc, href: null },
+      { el: contactRows[3], val: c.github ? `github.com/${c.github}` : null, href: c.githubUrl },
+      { el: contactRows[4], val: c.linkedinUrl ? 'linkedin.com/in/' + (c.linkedinUrl.split('/in/')[1] || '').replace(/\/$/, '') : null, href: c.linkedinUrl }
+    ];
+    contactMap.forEach(({ el, val, href }) => {
+      if (!el || !val) return;
+      const a = el.querySelector('a');
+      if (a) { a.textContent = val; if (href) a.href = href; }
+      else {
+        const span = el.querySelector('span:not(.ico)');
+        if (span) span.textContent = val;
+      }
+    });
+
+    // Skill bars (sidebar)
+    if (d.skills && d.skills.length) {
+      const skillList = document.querySelector('.sidebar .skill-list');
+      if (skillList) {
+        // Show top 8 skills sorted by level
+        const top = [...d.skills].sort((a, b) => b.level - a.level).slice(0, 8);
+        skillList.innerHTML = top.map(s => `
+          <div class="skill-item">
+            <div class="skill-label">
+              <span>${esc(s.name)}</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="width:${s.level}%"></div>
+            </div>
+          </div>`).join('');
+      }
+    }
+
+    // Skills grid (main)
+    if (d.skills && d.skills.length) {
+      const skillsGrid = document.querySelector('.skills-2col');
+      if (skillsGrid) {
+        skillsGrid.innerHTML = d.skills.map(s => `<div class="skill-chip">${esc(s.name)}</div>`).join('');
+      }
+    }
+
+    // Projects
+    if (d.projects && d.projects.length) {
+      const projList = document.querySelector('.projects-list');
+      if (projList) {
+        projList.innerHTML = d.projects.map(p => `
+          <div class="proj-item">
+            <div class="proj-name">
+              <span class="emoji">${p.emoji || '📦'}</span> ${esc(p.title)}
+            </div>
+            <div class="proj-desc">${esc(p.desc)}</div>
+            <div class="proj-tags">
+              ${(p.tags || []).map(t => `<span class="proj-tag">${esc(t)}</span>`).join('')}
+            </div>
+          </div>`).join('');
+      }
+    }
+
+    // Avatar initials
+    const avatar = document.querySelector('.avatar');
+    if (avatar && p.name) {
+      const initials = p.name.split(' ').map(w => w[0] || '').join('').toUpperCase().substring(0, 2);
+      avatar.textContent = initials;
+    }
+
+    // Footer
+    const footerSpan = document.querySelector('.cv-footer-main span');
+    if (footerSpan && p.name && p.school) {
+      const initials = p.name.split(' ').map(w => w[0] || '').join('').toUpperCase().substring(0, 2);
+      footerSpan.textContent = `<${initials}/> · ${p.school}`;
+    }
+
+  } catch(e) { /* fallback to static content */ }
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+loadCVData();
+
+// Auto-update via BroadcastChannel when admin saves
+try {
+  const ch = new BroadcastChannel('portfolio_update');
+  ch.onmessage = () => loadCVData();
+} catch(e) {}
+</script>
+</body>
+</html>
