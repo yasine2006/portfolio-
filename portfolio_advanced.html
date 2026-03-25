@@ -7,6 +7,10 @@
   <meta name="description" content="Portfolio interactif de Yassine Hafidi avec chatbot IA intégré">
   <link rel="icon" href="https://images.icon-icons.com/1603/PNG/512/computer-laptop-user-developer-programer_108610.png" />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function(){ emailjs.init({ publicKey: 'REMPLACE_PAR_TA_PUBLIC_KEY' }); })();
+  </script>
   <style>
     :root {
       --void: #0a0118;
@@ -1878,11 +1882,11 @@
 
   <div class="contact-grid">
     <div class="contact-info">
-      <a href="/cdn-cgi/l/email-protection#c4bda5b7b7adaaa1aca5a2ada0adf7f6f584a3a9a5ada8eaa7aba9" class="contact-item reveal">
+      <a href="mailto:yassinehafidi321@gmail.com" class="contact-item reveal">
         <div class="contact-icon">📧</div>
         <div class="contact-details">
           <h4>Email</h4>
-          <p><span class="__cf_email__" data-cfemail="621b0311110b0c070a03040b060b51505322050f030b0e4c010d0f">[email&#160;protected]</span></p>
+          <p><span class="__cf_email__" data-cfemail="621b0311110b0c070a03040b060b51505322050f030b0e4c010d0f">yassinehafidi321@gmail.com</span></p>
         </div>
       </a>
 
@@ -2108,28 +2112,19 @@
     preview.scrollTop = preview.scrollHeight;
 
     try {
-      const response = await fetch("/ask", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({question: msg})
-      });
-
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      
-      const data = await response.json();
+      await new Promise(r => setTimeout(r, 600));
+      const answer = novaAnswer(msg);
       loadingBubble.remove();
-      
       const botBubble = document.createElement('div');
       botBubble.className = 'chat-bubble bot';
-      botBubble.textContent = data.answer;
+      botBubble.textContent = answer;
       preview.appendChild(botBubble);
       preview.scrollTop = preview.scrollHeight;
-
     } catch (error) {
       loadingBubble.remove();
       const errorBubble = document.createElement('div');
       errorBubble.className = 'chat-bubble bot';
-      errorBubble.textContent = '⚠️ Serveur non disponible. Assurez-vous que server.py est lancé.';
+      errorBubble.textContent = '⚠️ Une erreur est survenue.';
       preview.appendChild(errorBubble);
       preview.scrollTop = preview.scrollHeight;
     } finally {
@@ -2185,28 +2180,19 @@
     body.scrollTop = body.scrollHeight;
 
     try {
-      const response = await fetch("/ask", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({question: msg})
-      });
-
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      
-      const data = await response.json();
+      await new Promise(r => setTimeout(r, 600));
+      const answer = novaAnswer(msg);
       loadingBubble.remove();
-      
       const botBubble = document.createElement('div');
       botBubble.className = 'chat-bubble bot';
-      botBubble.textContent = data.answer;
+      botBubble.textContent = answer;
       body.appendChild(botBubble);
       body.scrollTop = body.scrollHeight;
-
     } catch (error) {
       loadingBubble.remove();
       const errorBubble = document.createElement('div');
       errorBubble.className = 'chat-bubble bot';
-      errorBubble.textContent = '⚠️ Serveur non disponible. Lancez server.py';
+      errorBubble.textContent = '⚠️ Une erreur est survenue.';
       body.appendChild(errorBubble);
       body.scrollTop = body.scrollHeight;
     } finally {
@@ -2214,6 +2200,70 @@
       btn.disabled = false;
       input.focus();
     }
+  }
+
+  // ── Nova IA Locale ──
+  function novaAnswer(question) {
+    const q = question.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // Salutations
+    if (/^(bonjour|salut|hello|hi|hey|salam|coucou|bonsoir)/.test(q))
+      return "Salut ! 👋 Je suis Nova, l'assistante IA de Yassine. Tu peux me poser des questions sur ses compétences, projets, formation ou comment le contacter !";
+
+    // Identité
+    if (/qui (es|est)|ton nom|comment tu t.appell|c.est quoi|t.es qui/.test(q))
+      return "Je suis Nova 🤖, l'assistante IA de Yassine Hafidi. Je suis là pour te parler de lui et de son travail !";
+
+    // Yassine qui est-il
+    if (/qui est yassine|presente|presentation|parle.moi de (lui|yassine)/.test(q))
+      return "Yassine Hafidi est un développeur web & IA marocain, étudiant en DUT Informatique, Développement et Intelligence Artificielle (IDIA) à l'ESTK de Khenifra. Il crée des apps web modernes et performantes. 🚀";
+
+    // Formation
+    if (/formation|etude|etudiant|diplome|idia|dut|estk|ecole|universite/.test(q))
+      return "Yassine est étudiant en DUT IDIA (Informatique, Développement et Intelligence Artificielle) à l'ESTK Khenifra 🎓. Une formation complète en développement web et intelligence artificielle.";
+
+    // Compétences / skills
+    if (/competence|skill|technolog|maitrise|sait faire|stack|langage/.test(q))
+      return "Yassine maîtrise : HTML/CSS, JavaScript, Python, React, Node.js, Flask, SQL, Git, et des notions en Machine Learning & IA. Il est aussi à l'aise avec des outils comme VS Code, Docker et Figma. 💻";
+
+    // Projets
+    if (/projet|work|realisation|portfolio|app|site|creat/.test(q))
+      return "Yassine a réalisé plusieurs projets : des applications web fullstack, des chatbots IA, des dashboards interactifs, et ce portfolio lui-même ! Tu peux voir ses projets dans la section #Projets. 🛠️";
+
+    // Services
+    if (/service|offre|devis|tarif|prix|combien|freelance|travail/.test(q))
+      return "Yassine propose : 🌐 Développement web, 🤖 Chatbots & IA, 📊 Dashboards, 🎨 Design UI/UX. Envoie-lui un message via la section Contact pour un devis !";
+
+    // Contact
+    if (/contact|joindre|email|mail|telephone|whatsapp|appeler|message|ecrire/.test(q))
+      return "Tu peux contacter Yassine par :\n📧 Email : yassinehafidi321@gmail.com\n📱 Téléphone : +212 613 612 618\n💻 GitHub : yasine2006\nOu via le formulaire en bas de page !";
+
+    // Disponibilité / stage
+    if (/dispo|disponible|stage|embauche|recruter|open to work|emploi/.test(q))
+      return "Yassine est disponible pour des stages, projets freelance ou collaborations ! N'hésite pas à le contacter. 📩";
+
+    // Localisation
+    if (/ou|localisation|ville|pays|maroc|khenifra|habite|vit/.test(q))
+      return "Yassine est basé à Khenifra, Maroc 📍.";
+
+    // GitHub / LinkedIn
+    if (/github|linkedin|reseau|profil|instagram/.test(q))
+      return "Tu peux retrouver Yassine sur :\n💻 GitHub : github.com/yasine2006\n📸 Instagram : @yassine__hafidi_2_/\nLes liens sont dans le footer du portfolio !";
+
+    // Langage / langue
+    if (/arab|darija|francais|anglais|langue/.test(q))
+      return "Yassine parle arabe, darija (marocain), français et a des notions en anglais. 🌍";
+
+    // Remerciements
+    if (/merci|thank|shukran/.test(q))
+      return "Avec plaisir ! 😊 Si tu as d'autres questions sur Yassine, je suis là !";
+
+    // Au revoir
+    if (/au revoir|bye|ciao|bslama|adieu/.test(q))
+      return "À bientôt ! 👋 N'oublie pas de contacter Yassine si tu as un projet en tête !";
+
+    // Défaut
+    return "Bonne question ! 🤔 Je suis spécialisée sur Yassine Hafidi. Tu peux me demander sa formation, ses compétences, ses projets ou comment le contacter. Essaie une de ces questions !";
   }
 
   // ── Contact Form ──
@@ -2231,22 +2281,16 @@
     btn.textContent = 'Envoi en cours...';
 
     try {
-      const res = await fetch('/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message })
-      });
-      const json = await res.json();
-      if (json.success) {
-        btn.textContent = '✓ Message envoyé !';
-        btn.style.background = 'linear-gradient(135deg, #10b981, #06b6d4)';
-        form.reset();
-      } else {
-        btn.textContent = '⚠️ ' + (json.message || 'Erreur');
-        btn.style.background = 'linear-gradient(135deg, #ef4444, #f59e0b)';
-      }
+      await emailjs.send(
+        'REMPLACE_PAR_TON_SERVICE_ID',
+        'REMPLACE_PAR_TON_TEMPLATE_ID',
+        { from_name: name, from_email: email, message: message }
+      );
+      btn.textContent = '✓ Message envoyé !';
+      btn.style.background = 'linear-gradient(135deg, #10b981, #06b6d4)';
+      form.reset();
     } catch (err) {
-      btn.textContent = '⚠️ Serveur non disponible';
+      btn.textContent = '⚠️ Erreur d\'envoi';
       btn.style.background = 'linear-gradient(135deg, #ef4444, #f59e0b)';
     }
 

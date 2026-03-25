@@ -8,8 +8,9 @@
     "loc": "Khenifra, Maroc",
     "phone": "+212 613 612 618"
   },
+  "nova_clients": [],
   "personal": {
-    "about": "Étudiant en 2ème année IDIA à l'ESTK Khenifra, spécialisé en développement web et modèles d'intelligence artificielle (Machine Learning & Deep Learning). Passionné par la création de sites web modernes et de solutions IA concrètes, j'ai acquis une première expérience professionnelle lors d'un stage à la Délégation de Santé de Khenifra.",
+    "about": "Étudiant en 2ème année IDIA à l'ESTK Khenifra, spécialisé en Ingénierie des Données et Intelligence Artificielle (Machine Learning & Deep Learning). Passionné par la création de sites web modernes et de solutions IA concrètes, j'ai acquis une première expérience professionnelle lors d'un stage à la Délégation de Santé de Khenifra. et Intéressé par le service des modèles d'intelligence artificielle avec Ingénierie des Données",
     "aboutCards": [
       {
         "desc": "Machine learning, deep learning et NLP. Je développe des modèles intelligents qui apprennent et prédisent à partir de données complexes.",
@@ -106,61 +107,60 @@
   ],
   "skills": [
     {
-      "name": "Machine Learning",
-      "level": 60
+      "level": 60,
+      "name": "Machine Learning"
     },
     {
-      "name": "Deep Learning",
-      "level": 80
+      "level": 80,
+      "name": "Deep Learning"
     },
     {
-      "name": "Python",
-      "level": 80
+      "level": 80,
+      "name": "Python"
     },
     {
-      "name": "HTML & CSS",
-      "level": 90
+      "level": 90,
+      "name": "HTML & CSS"
     },
     {
-      "name": "JavaScript",
-      "level": 59
+      "level": 59,
+      "name": "JavaScript"
     },
     {
-      "name": "NLP",
-      "level": 90
+      "level": 90,
+      "name": "NLP"
     },
     {
-      "name": "SQL / NoSQL",
-      "level": 89
+      "level": 89,
+      "name": "SQL / NoSQL"
     },
     {
-      "name": "Flask",
-      "level": 79
+      "level": 79,
+      "name": "Flask"
     },
     {
-      "name": "Data Science",
-      "level": 89
+      "level": 89,
+      "name": "Data Science"
     },
     {
-      "name": "C / C++",
-      "level": 72
+      "level": 72,
+      "name": "C / C++"
     },
     {
-      "name": "Git & GitHub",
-      "level": 85
+      "level": 85,
+      "name": "Git & GitHub"
     },
     {
-      "name": "Data Mining",
-      "level": 86
+      "level": 86,
+      "name": "Data Mining"
     },
     {
-      "name": "Power Bi",
-      "level": 70
+      "level": 70,
+      "name": "Power Bi"
     },
     {
-      "name": "lunix",
-      "level": 70
+      "level": 70,
+      "name": "lunix"
     }
-  ],
-  "nova_clients": []
+  ]
 }
